@@ -1,25 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import InventoryShirts from './InventoryShirts';
+import InventoryJackets from "./InventoryJackets";
+import InventoryPants from "./InventoryPants";
+import InventoryShoes from "./InventoryShoes";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import "./App.css";
+
+class App extends Component {
+
+  constructor(props){
+    super(props);
+    this.state = {
+      data: 'Welcome'
+    }
+  }
+  getData(){
+    setTimeout(() => {
+      console.log("our data");
+      this.setState({
+        data: "Welcom To My Inventory Website"
+      })
+    })
+  }
+
+componentDidMount(){
+  this.getData();
 }
+
+componentDidUpdate(){
+  console.log("componentDidUpdate", this.state.data)
+}
+render(){
+return (
+  <div className="container">
+    <h1>Stock Inventory</h1>
+    <hr></hr>
+    <div className="items">
+      <InventoryShirts />
+      <InventoryJackets />
+      <InventoryPants />
+      <InventoryShoes />
+
+    </div>
+    <hr></hr>
+    <div><h1>{this.state.data}</h1></div>
+    <hr></hr>
+  </div>
+)
+}}
 
 export default App;
